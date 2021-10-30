@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'helper/color_bar.dart';
+import 'helper/column_content.dart';
 import 'helper/time_button.dart';
+import 'helper/transaction_method.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -35,9 +36,8 @@ class _HomePageState extends State<HomePage> {
                     'USD / INR',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 25.0,
-                      fontFamily: 'IBM Plex Sans',
-                      fontWeight: FontWeight.w700,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
@@ -56,15 +56,14 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         'Technical Indicators',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'IBM Plex Sans',
-                          fontSize: 16,
+                          color: Colors.grey,
+                          fontSize: 18,
                           fontWeight: FontWeight.w100,
                         ),
                       ),
                       Icon(
                         FontAwesomeIcons.chevronDown,
-                        color: Colors.white,
+                        color: Colors.grey,
                         size: 20,
                       ),
                     ],
@@ -76,9 +75,8 @@ class _HomePageState extends State<HomePage> {
                 'Summary',
                 style: TextStyle(
                   color: Colors.white,
-                  fontFamily: 'IBM Plex Sans',
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
               SizedBox(height: 45.0),
@@ -133,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                                     'NEUTRAL',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontWeight: FontWeight.w900,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 18,
                                     ),
                                   ),
@@ -150,7 +148,8 @@ class _HomePageState extends State<HomePage> {
                       TimeButton(
                         time: '1 MIN',
                         colour: Colors.white,
-                        weight: FontWeight.w700,
+                        textColour: Colors.white,
+                        weight: FontWeight.w400,
                       ),
                       TimeButton(time: '5 MIN'),
                       TimeButton(time: '15 MIN'),
@@ -169,9 +168,8 @@ class _HomePageState extends State<HomePage> {
                 'Moving Averages',
                 style: TextStyle(
                   color: Colors.white,
-                  fontFamily: 'IBM Plex Sans',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 22,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 25,
                 ),
               ),
               SizedBox(height: 30),
@@ -185,12 +183,12 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
                   ),
                   child: Text(
-                    'Buy',
+                    'BUY',
                     style: TextStyle(
-                        fontFamily: 'IBM Plex Sans',
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
@@ -200,75 +198,10 @@ class _HomePageState extends State<HomePage> {
                     horizontal: 30.0, vertical: 10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: const [
-                        Text(
-                          '7',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          'Buy',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w100,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          Text(
-                            '-',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Neutral',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w100,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          Text(
-                            '5',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            'Sell',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w100,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  children: const [
+                    TransactionMethod(value: '7', method: 'Buy'),
+                    TransactionMethod(value: '-', method: 'Neutral'),
+                    TransactionMethod(value: '5', method: 'Sell'),
                   ],
                 ),
               ),
@@ -289,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 22,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                     SizedBox(width: 15.0),
@@ -300,6 +233,285 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                height: 40.0,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade900,
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Period',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                      Text(
+                        'Value',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                      Text(
+                        'Type',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              ColumnContent(
+                text1: 'MA10',
+                text2: '465.28',
+                text3: 'SELL',
+              ),
+              ColumnContent(
+                text1: 'MA20',
+                text2: '465.28',
+                text3: 'SELL',
+              ),
+              ColumnContent(
+                text1: 'MA30',
+                text2: '465.28',
+                text3: 'BUY',
+              ),
+              ColumnContent(
+                text1: 'MA50',
+                text2: '465.28',
+                text3: 'BUY',
+              ),
+              ColumnContent(
+                text1: 'MA100',
+                text2: '465.28',
+                text3: 'SELL',
+              ),
+              ColumnContent(
+                text1: 'MA200',
+                text2: '465.28',
+                text3: 'BUY',
+              ),
+              SizedBox(height: 50),
+              Text('Oscillators',
+                  style: TextStyle(color: Colors.white, fontSize: 22)),
+              SizedBox(height: 40),
+              InkWell(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFFF2E50),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ),
+                  alignment: Alignment.center,
+                  width: 120,
+                  height: 40,
+                  child: Text(
+                    'STRONG SELL',
+                    style: TextStyle(color: Colors.white, fontSize: 17),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 30.0, vertical: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    TransactionMethod(value: '1', method: 'Buy'),
+                    TransactionMethod(value: '1', method: 'Neutral'),
+                    TransactionMethod(value: '9', method: 'Sell'),
+                  ],
+                ),
+              ),
+              SizedBox(height: 30),
+              Container(
+                height: 40.0,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade900,
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Period',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                      Text(
+                        'Value',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                      Text(
+                        'Type',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
+              ColumnContent(
+                text1: 'RSI (14)',
+                text2: '-53.6549',
+                text3: 'NEUTRAL',
+                colour1: Colors.grey,
+              ),
+              ColumnContent(
+                text1: 'CCI(20)',
+                text2: '-53.6549',
+                text3: 'SELL',
+                colour1: Colors.grey,
+              ),
+              ColumnContent(
+                text1: 'ADI(14)',
+                text2: '-53.6549',
+                text3: 'BUY',
+                colour1: Colors.grey,
+              ),
+              ColumnContent(
+                text1: 'Awesome Oscillator',
+                text2: '-53.6549',
+                text3: 'SELL',
+                colour1: Colors.grey,
+              ),
+              ColumnContent(
+                text1: 'Momentum (10)',
+                text2: '-53.6549',
+                text3: 'SELL',
+                colour1: Colors.grey,
+              ),
+              ColumnContent(
+                text1: 'Stochastic RSI Fast (3, 3, 14, 14)',
+                text2: '-53.6549',
+                text3: 'SELL',
+                colour1: Colors.grey,
+              ),
+              ColumnContent(
+                text1: 'Williams %R (14)',
+                text2: '-53.6549',
+                text3: 'SELL',
+                colour1: Colors.grey,
+              ),
+              ColumnContent(
+                text1: 'Bull Bear Power',
+                text2: '-53.6549',
+                text3: 'SELL',
+                colour1: Colors.grey,
+              ),
+              ColumnContent(
+                text1: 'Ultimate Oscillator (7, 14, 28)',
+                text2: '-53.6549',
+                text3: 'LESS VOLATILE',
+                colour1: Colors.grey,
+              ),
+              SizedBox(height: 40),
+              Text(
+                'Pivot Points',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                ),
+              ),
+              SizedBox(height: 30.0),
+              Container(
+                alignment: Alignment.center,
+                width: 180.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade900,
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      'Classic',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                      ),
+                    ),
+                    SizedBox(width: 55.0),
+                    Icon(
+                      FontAwesomeIcons.chevronDown,
+                      color: Colors.white,
+                      size: 15.0,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 30.0),
+              ColumnContent(
+                text1: 'S3',
+                text3: '456.87',
+                colour1: Colors.grey,
+                colour3: Colors.white,
+              ),
+              ColumnContent(
+                text1: 'S2',
+                text3: '456.87',
+                colour1: Colors.grey,
+                colour3: Colors.white,
+              ),
+              ColumnContent(
+                text1: 'S1',
+                text3: '456.87',
+                colour1: Colors.grey,
+                colour3: Colors.white,
+              ),
+              ColumnContent(
+                text1: 'Pivot Points',
+                text3: '456.87',
+                colour1: Colors.grey,
+                colour3: Colors.white,
+              ),
+              ColumnContent(
+                text1: 'R1',
+                text3: '456.87',
+                colour1: Colors.grey,
+                colour3: Colors.white,
+              ),
+              ColumnContent(
+                text1: 'R2',
+                text3: '456.87',
+                colour1: Colors.grey,
+                colour3: Colors.white,
+              ),
+              ColumnContent(
+                text1: 'R3',
+                text3: '456.87',
+                colour1: Colors.grey,
+                colour3: Colors.white,
               ),
               SizedBox(height: 100),
             ],

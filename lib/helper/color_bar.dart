@@ -17,7 +17,7 @@ class ColorBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60.0,
+      height: 70.0,
       width: width,
       decoration: BoxDecoration(
         color: colour,

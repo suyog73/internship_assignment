@@ -8,11 +8,13 @@ class TimeButton extends StatelessWidget {
     required this.time,
     this.colour = Colors.grey,
     this.weight = FontWeight.w100,
+    this.textColour = Colors.grey,
   }) : super(key: key);
 
   final String time;
   final Color colour;
   final FontWeight weight;
+  final Color textColour;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class TimeButton extends StatelessWidget {
           child: Text(
             time,
             style: TextStyle(
-              color: Colors.white,
+              color: textColour,
               fontFamily: 'IBM Plex Sans',
               fontWeight: weight,
             ),
