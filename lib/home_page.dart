@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'helper/color_bar.dart';
 import 'helper/column_content.dart';
@@ -21,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Color(0xFF000000),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 80.0, horizontal: 30.0),
+        padding: const EdgeInsets.fromLTRB(30, 80, 30, 0),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -107,36 +105,39 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             SizedBox(width: 20.0),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 10,
-                                  height: 10,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFFFB946),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(1500),
-                                      bottomLeft: Radius.circular(1500),
+                            SizedBox(
+                              width: 120,
+                              height: 40,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    width: 100,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFFFB946),
+                                    ),
+                                    child: Text(
+                                      'NEUTRAL',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  width: 100,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFFFB946),
-                                  ),
-                                  child: Text(
-                                    'NEUTRAL',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 18,
+                                  Positioned(
+                                    left: -13,
+                                    child: Icon(
+                                      // FontAwesomeIcons.caretLeft,
+                                      Icons.arrow_left_sharp,
+                                      color: Color(0xFFFFB946),
+                                      size: 40,
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             )
                           ],
                         ),
